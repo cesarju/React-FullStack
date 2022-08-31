@@ -1,12 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Content = ({ part, execises }) => {
+const part1 = "Fundamentals of React";
+const exercises1 = 10;
+const part2 = "Using props to pass data";
+const exercises2 = 7;
+const part3 = "State of a component";
+const exercises3 = 14;
+
+const Part = ({ part, exercises }) => {
+  return (
+    <p>
+      {part} {exercises}
+    </p>
+  );
+};
+
+const Content = () => {
   return (
     <div>
-      <p>
-        {part} {execises}
-      </p>
+      <Part part={part1} execises={exercises1} />
+      <Part part={part2} execises={exercises2} />
+      <Part part={part3} execises={exercises3} />
     </div>
   );
 };
@@ -24,19 +39,11 @@ const Total = ({ value1, value2, value3 }) => {
 
 const App = () => {
   const course = "Half Stack application development";
-  const part1 = "Fundamentals of React";
-  const exercises1 = 10;
-  const part2 = "Using props to pass data";
-  const exercises2 = 7;
-  const part3 = "State of a component";
-  const exercises3 = 14;
 
   return (
     <div>
       <Header nameCourse={course} />
-      <Content part={part1} exercises={exercises1} />
-      <Content part={part2} exercises={exercises2} />
-      <Content part={part3} exercises={exercises3} />
+      <Content />
       <Total value1={exercises1} value2={exercises2} value3={exercises3} />
     </div>
   );
