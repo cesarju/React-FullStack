@@ -2,25 +2,55 @@ import "./App.css";
 import { useState } from "react";
 import { Counter } from "./components/Counter";
 function App() {
-  const [contador, setContador] = useState(0);
-  const handlePlus = () => {
-    setContador(contador + 1);
+  const [contador, setContador] = useState({
+    left: 0,
+    right: 0,
+    clicks: 0,
+    mensajes: "Mensaje en el estado",
+  });
+  const [click, setClick] = useState([]);
+
+  const handleClickLeft = () => {
+    const newContador = {
+      ...contador,
+      left: contador.left + 1,
+      mensajes: "Hola munndo",
+    };
+    setContador(newContador);
+    setClick((preventElement) => {
+      return [...preventElement, "L"];
+    });
   };
-  const handleMinus = () => {
-    setContador(contador - 1);
-    /*  setContador((contador) => {
-      return contador - 1;
-    }); */
+  const handleClickRight = () => {
+    const newContador = {
+      ...contador,
+      right: contador.right + 1,
+      mensajes: "Hola munndo al reves",
+    };
+    setContador(newContador);
+    setClick((preventElement) => {
+      return [...preventElement, "R"];
+    });
   };
   const handleReset = () => {
-    setContador(0);
+    const reset = {
+      left: 0,
+      right: 0,
+      mensajes: "Se reseteo los dos contadores",
+    };
+    setContador(reset);
   };
   return (
     <div className="App">
-      <Counter number={contador} />
-      <button onClick={handlePlus}>Incrementar</button>
-      <button onClick={handleMinus}>Decrementar</button>
-      <button onClick={handleReset}>Decrementar</button>
+      <Counter number={contador.left} />
+      <button onClick={handleClickLeft}>Incrementar izquierda</button>
+      <Counter number={contador.right} />
+      <button onClick={handleClickRight}>Incrementar derecha</button>
+      <br />
+      <button onClick={handleReset}>Reset</button>
+      <h3>{contador.mensajes}</h3>
+      <h2>Contador de clicks y lados</h2>
+      <h2>{click.join("-")}</h2>
     </div>
   );
 }
