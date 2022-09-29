@@ -1,57 +1,52 @@
 import "./App.css";
-import { useState } from "react";
-import { Counter } from "./components/Counter";
-function App() {
-  const [contador, setContador] = useState({
-    left: 0,
-    right: 0,
-    clicks: 0,
-    mensajes: "Mensaje en el estado",
-  });
-  const [click, setClick] = useState([]);
 
-  const handleClickLeft = () => {
-    const newContador = {
-      ...contador,
-      left: contador.left + 1,
-      mensajes: "Hola munndo",
-    };
-    setContador(newContador);
-    setClick((preventElement) => {
-      return [...preventElement, "L"];
-    });
-  };
-  const handleClickRight = () => {
-    const newContador = {
-      ...contador,
-      right: contador.right + 1,
-      mensajes: "Hola munndo al reves",
-    };
-    setContador(newContador);
-    setClick((preventElement) => {
-      return [...preventElement, "R"];
-    });
-  };
-  const handleReset = () => {
-    const reset = {
-      left: 0,
-      right: 0,
-      mensajes: "Se reseteo los dos contadores",
-    };
-    setContador(reset);
-  };
+const notes = [
+  {
+    id: 13,
+    content: "HTML is easy",
+    date: "2019-07-30",
+    important: true,
+  },
+  {
+    id: 112,
+    content: "Browser can execute only JavaScript",
+    date: "2020-01-7",
+    important: false,
+  },
+  {
+    id: 67,
+    content: "GET and POST are the most important methods of HTTPS",
+    date: "2018-11-10",
+    important: false,
+  },
+  {
+    id: 49,
+    content: "I believe me",
+    date: "2022-09-29",
+    important: true,
+  },
+];
+
+function App() {
+  if (!notes) {
+    return "No tenemos notas que mostrar valor de undefined";
+  }
   return (
-    <div className="App">
-      <Counter number={contador.left} />
-      <button onClick={handleClickLeft}>Incrementar izquierda</button>
-      <Counter number={contador.right} />
-      <button onClick={handleClickRight}>Incrementar derecha</button>
-      <br />
-      <button onClick={handleReset}>Reset</button>
-      <h3>{contador.mensajes}</h3>
-      <h2>Contador de clicks y lados</h2>
-      <h2>{click.join("-")}</h2>
-    </div>
+    <ul>
+      <h1>Clase de Formularios</h1>
+      {notes.map((item) => {
+        return (
+          <li key={item.id}>
+            <p>
+              <strong>{item.content}</strong>
+            </p>
+            <small>
+              <time>{item.date}</time>
+            </small>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
