@@ -43,6 +43,7 @@ function App() {
             <small>
               <time>{item.date}</time>
             </small>
+            <p>{item.important ? "verdad" : "falso"}</p>
           </li>
         );
       })}
